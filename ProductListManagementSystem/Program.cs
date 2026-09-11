@@ -2,7 +2,7 @@
 Console.WriteLine("-------------------------------");
 Console.WriteLine("LEVEL 1");
 Console.WriteLine("-------------------------------");
-*/
+
 
 
 Console.WriteLine("==== PRODUCT LIST APPLICATION ====");
@@ -49,7 +49,7 @@ while (true)
     Console.WriteLine("Product added successfully!");
     Console.WriteLine();
 
-
+    ProductManager manager = new ProductManager();
 }
 
 Console.WriteLine();
@@ -64,3 +64,29 @@ foreach (Product product in products)
     );
 }
 
+*/
+
+
+using ProductListManagementSystem;
+
+Console.WriteLine("-------------------------------");
+Console.WriteLine("LEVEL 2");
+Console.WriteLine("-------------------------------");
+
+Console.WriteLine("==== PRODUCT LIST APPLICATION ====");
+Console.WriteLine();
+
+// Create ProductManager
+ProductManager manager = new ProductManager();
+
+// Add products
+manager.AddProduct();
+
+// Display products sorted by price
+manager.ShowProducts();
+
+// Calculate and display total
+decimal total = manager.CalculateTotal();
+
+Console.WriteLine();
+Console.WriteLine($"TOTAL PRICE: {total} kr");
