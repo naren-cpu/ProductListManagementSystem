@@ -21,11 +21,23 @@ namespace ProductListManagementSystem
                 if (category == "q")
                     break;
 
+                if(string.IsNullOrWhiteSpace(category))
+                {
+                    Console.WriteLine("ERROR: Category cannot be empty.");
+                    continue;
+                }
+
                 Console.Write("Enter Product Name: ");
                 string? productname = Console.ReadLine();
 
                 if (productname == "q")
                     break;
+
+                if (string.IsNullOrWhiteSpace(productname))
+                {
+                    Console.WriteLine("ERROR: Product name cannot be empty.");
+                    continue;
+                }
 
                 Console.Write("Enter Price: ");
                 string? priceInput = Console.ReadLine();
@@ -37,7 +49,17 @@ namespace ProductListManagementSystem
                 }
 
 
-                decimal.TryParse(priceInput, out decimal price);
+                if (!decimal.TryParse(priceInput, out decimal price))
+                {
+                    Console.WriteLine("ERROR: Invalid price. Please enter a numeric value.");
+                    continue;
+                }
+
+                if (price < 0)
+                {
+                    Console.WriteLine("ERROR: Price cannot be negative.");
+                    continue;
+                }
 
 
 
@@ -77,12 +99,39 @@ namespace ProductListManagementSystem
         }
 
 
+
         public decimal CalculateTotal()
         {
             return products.Sum(p => p.Price);
         }
 
+        public void SearchProduct()
+        {
+            Console.Write("Search Product: ");
+            string? search = Console.ReadLine();
+
+            var results = products.Where(p =>
+                p.ProductName.Contains(search, StringComparison.OrdinalIgnoreCase) ||
+                p.Category.Contains(search, StringComparison.OrdinalIgnoreCase));
+
+            Console.WriteLine();
+            Console.WriteLine("FOUND PRODUCTS:");
+
+            foreach (Product product in results)
+            {
+                Console.ForegroundColor = ConsoleColor.Green;
+
+                Console.WriteLine(
+                    $"{product.Category} | {product.ProductName} | {product.Price} kr");
+
+                Console.ResetColor();
+            }
+        }
+
     }
+
+
+
 
 }
     

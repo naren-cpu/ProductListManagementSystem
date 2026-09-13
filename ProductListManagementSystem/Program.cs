@@ -70,7 +70,7 @@ foreach (Product product in products)
 using ProductListManagementSystem;
 
 Console.WriteLine("-------------------------------");
-Console.WriteLine("LEVEL 2");
+Console.WriteLine("LEVEL 3");
 Console.WriteLine("-------------------------------");
 
 Console.WriteLine("==== PRODUCT LIST APPLICATION ====");
@@ -84,6 +84,9 @@ manager.AddProduct();
 
 // Display products sorted by price
 manager.ShowProducts();
+
+// Search Product
+manager.SearchProduct();
 
 // Calculate and display total
 decimal total = manager.CalculateTotal();
